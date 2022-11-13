@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: ResourceSecond
   m_EditorClassIdentifier: 
   resourceType: 1
+  material: {fileID: 0}
+  size: {x: 0.5, y: 0.5, z: 0.5}

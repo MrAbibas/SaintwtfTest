@@ -6,4 +6,5 @@ public class Resource : MonoBehaviour
 {
     [SerializeField]
     private ResourceData resourceData;
+    internal ResourceData ResourceData => resourceData;
 }
