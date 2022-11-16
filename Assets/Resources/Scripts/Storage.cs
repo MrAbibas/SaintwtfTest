@@ -28,8 +28,6 @@ internal class Storage : MonoBehaviour
     }
     private void SetResourcePositions()
     {
-        Debug.Log(spacing);
-        Debug.Log(resourceData.Size);
         Vector3 resourceSize = resourceData.Size + spacing;
         Vector3Int size = new Vector3Int
         {
