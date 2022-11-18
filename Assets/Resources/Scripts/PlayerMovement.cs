@@ -13,11 +13,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rigidbody.velocity = new Vector3()
-        {
-            x = joystick.Direction.x * speed,
-            y = rigidbody.velocity.y,
-            z = joystick.Direction.y * speed,
-        };
+        if (joystick.Direction == Vector2.zero) return;
+
+        Vector3 direction = Vector3.forward * joystick.Vertical + Vector3.right * joystick.Horizontal;
+        transform.rotation = Quaternion.LookRotation(direction,transform.up);
+        rigidbody.velocity = transform.forward * speed;
     }
 }
