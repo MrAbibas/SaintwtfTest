@@ -9,5 +9,8 @@ internal class FactoryPort<T> where T : Storage
     [SerializeField]
     internal int count;
     [SerializeField]
-    internal T storage;
+    protected T storage;
+    [SerializeField]
+    internal Transform endPoint;
+    internal Factory factory;
 }
