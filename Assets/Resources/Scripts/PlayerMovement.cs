@@ -17,6 +17,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 direction = Vector3.forward * joystick.Vertical + Vector3.right * joystick.Horizontal;
         transform.rotation = Quaternion.LookRotation(direction,transform.up);
-        rigidbody.velocity = transform.forward * speed;
+        rigidbody.velocity = transform.forward * speed * direction.magnitude;
     }
 }
