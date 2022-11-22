@@ -21,8 +21,12 @@ internal class Factory : MonoBehaviour
     {
         outputParameter.factory = this;
         for (int i = 0; i < inputParameters.Length; i++)
-            inputParameters[i].factory = this;
-
+        {
+            FactoryInputPort inputParameter = inputParameters[i];
+            inputParameter.factory = this;
+            inputParameter.onResourceLoaded.AddListener((t, c) => 
+                factoryView.SetResourceCount(t.ResourceData.ResourceType, inputParameter.count - c));
+        }
         StartLoading();
     }
     private void StartLoading()
@@ -36,6 +40,7 @@ internal class Factory : MonoBehaviour
         {
             inputParameters[i].ResetCurentCount();
             inputParameters[i].LoadResources(EndLoadingResources);
+            factoryView.SetResourceCount(inputParameters[i].type, inputParameters[i].count);
         }
     }
     private void EndLoadingResources()

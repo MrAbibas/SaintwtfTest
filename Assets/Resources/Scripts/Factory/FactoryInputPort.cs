@@ -1,9 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 internal class FactoryInputPort: FactoryPort<StorageInput>
 {
+    internal UnityEvent<Resource,int> onResourceLoaded = new UnityEvent<Resource, int>();
     internal int curentCount { get; private set; }
     internal void ResetCurentCount() => curentCount = 0;
     internal void LoadResources(Action loadingComplete)
@@ -37,6 +39,7 @@ internal class FactoryInputPort: FactoryPort<StorageInput>
     {
         ResourcePool.Instance.Push(resource);
         curentCount++;
+        onResourceLoaded?.Invoke(resource, curentCount);
         LoadResources(loadingComplete);
     }
 }
