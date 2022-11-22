@@ -21,7 +21,6 @@ public class PlayerInventory : MonoBehaviour
     {
         if (curentHeight + storage.resourceData.Size.y > maxHeight)
         {
-            Debug.Log("inventory is full");
             return;
         }
         Resource resource = storage.PopResource();

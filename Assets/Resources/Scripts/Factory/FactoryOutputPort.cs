@@ -7,7 +7,7 @@ internal class FactoryOutputPort: FactoryPort<StorageOutput>
 {
     internal void UnloadingResources(Stack<Resource> resources, Action unloadingComplete)
     {
-        storage.onDecreaseCount.RemoveAllListeners();
+       storage.onDecreaseCount.RemoveAllListeners();
         if (resources.Count == 0)
         {
             unloadingComplete.Invoke();
@@ -29,8 +29,12 @@ internal class FactoryOutputPort: FactoryPort<StorageOutput>
         }
         else
         {
-            Debug.Log("Storage otput is full");
-            storage.onDecreaseCount.AddListener(() => UnloadingResources(resources, unloadingComplete));
+            Log.Instance.SendMessage(factory.name,"Storage is full");
+            storage.onDecreaseCount.AddListener(() =>
+            {
+                Log.Instance.RemoveMessage(factory.name);
+                UnloadingResources(resources, unloadingComplete);
+            });
             return;
         }
     }
