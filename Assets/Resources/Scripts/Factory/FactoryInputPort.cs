@@ -32,10 +32,10 @@ internal class FactoryInputPort: FactoryPort<StorageInput>
         }
         else
         {
-            Log.Instance.SendMessage(factory.name, "Not enough resources");
+            Log.Instance.SendMessage(new MessageInfo() { name = factory.name, value = $"Not enough resources {type}" },out int id);
             storage.onIncreaseCount.AddListener(() =>
             {
-                Log.Instance.RemoveMessage(factory.name);
+                Log.Instance.RemoveMessage(id);
                 LoadResources(loadingComplete);
             });
         }

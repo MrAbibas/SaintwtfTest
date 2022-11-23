@@ -29,10 +29,10 @@ internal class FactoryOutputPort: FactoryPort<StorageOutput>
         }
         else
         {
-            Log.Instance.SendMessage(factory.name,"Storage is full");
+            Log.Instance.SendMessage(new MessageInfo() { name = factory.name, value = "Storage is full" }, out int id);
             storage.onDecreaseCount.AddListener(() =>
             {
-                Log.Instance.RemoveMessage(factory.name);
+                Log.Instance.RemoveMessage(id);
                 UnloadingResources(resources, unloadingComplete);
             });
             return;
